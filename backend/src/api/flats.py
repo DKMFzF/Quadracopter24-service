@@ -20,4 +20,4 @@ def get_flats():
 
 @router.post("")
 def add_flat(flat_data: FlatAdd = Body()):
-    ...
+    return flat_data
