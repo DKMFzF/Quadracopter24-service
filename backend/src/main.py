@@ -15,7 +15,10 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhoct:8081"]
+    allow_origins=["http://localhost:8081"],  # Разрешенные origins
+    allow_credentials=True,  # Разрешить куки и авторизацию
+    allow_methods=["*"],  # Разрешить все методы (GET, POST, PUT, DELETE и т.д.)
+    allow_headers=["*"],  # Разрешить все заголовки
 )
 
 app.include_router(router_flats)
