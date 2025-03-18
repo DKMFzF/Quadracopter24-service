@@ -17,7 +17,7 @@ interface IFlats {
 
 const vladTestAPI = (url: string): Promise<IFlats> => {
 	return fetch(`${url}/flats`, {
-			method: 'GET'
+			method: 'GET',
 	})
 	.then(response => {
 			if (!response.ok) throw new Error('Ошиб-ОЧКА');

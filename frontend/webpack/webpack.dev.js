@@ -10,6 +10,9 @@ module.exports = {
 		port: 8081,
 		open: true,
 		hot: true,
+		proxy: {
+      '/flats': 'http://localhost:8000'
+    }
 	},
 	plugins: [new ReactRefreshWebpackPlugin()],
 };
