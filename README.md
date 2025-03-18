@@ -7,8 +7,8 @@
 git clone https://github.com/DKMFzF/fkv_test.git
 
 # для билда фронтенда
-chmod +x start-frontend.sh
-./start-frontend.sh
+chmod +x start-app.sh
+./start-app.sh
 
 # поднимаем проект
 docker-compose up --build
