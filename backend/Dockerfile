@@ -17,7 +17,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Финальный этап
 FROM python:3.10-slim-buster
 
 WORKDIR /app
