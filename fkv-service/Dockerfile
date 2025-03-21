@@ -25,8 +25,4 @@ COPY --from=builder /app /app
 
 EXPOSE 8000
 
-COPY db-check.sh /db-check.sh
-RUN chmod +x /db-check.sh
-RUN apt-get update && apt-get install -y netcat bash
-
 CMD ["python", "src/main.py"]
