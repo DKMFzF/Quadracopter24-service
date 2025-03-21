@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd ./frontend || { echo "[ERROR]: такой папки нету"; exit 1; }
+cd ./fkv-client || { echo "[ERROR]: такой папки нету"; exit 1; }
 
 echo "[LOG]: Установка зависимостей"
 npm install
