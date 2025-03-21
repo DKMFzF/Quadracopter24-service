@@ -51,12 +51,11 @@ services:
       - ML_SERVICE_URL=http://ml:8001
     restart: unless-stopped
     depends_on:
-      postgres:
-        condition: service_healthy
-      ml:
-        condition: service_healthy
+      - postgres
+      - ml
     networks:
       - app-network
+    command: ["./wait-for.sh", "postgres:5432", "--", "python", "src/main.py"]
 
   node-app:
     build:
