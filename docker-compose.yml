@@ -18,23 +18,6 @@ services:
       timeout: 5s
       retries: 5
 
-  ml:
-    build: ./fkv-service-ml
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./fkv-service-ml:/app
-    environment:
-      - PYTHONUNBUFFERED=1
-    restart: unless-stopped
-    networks:
-      - app-network
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
   python-app:
     build: ./fkv-service
     ports:
@@ -48,14 +31,12 @@ services:
       - DBUSER=postgres
       - DBPASS=12345678
       - DBNAME=fkvdb
-      - ML_SERVICE_URL=http://ml:8001
     restart: unless-stopped
     depends_on:
-      - postgres
-      - ml
+      postgres:
+        condition: service_healthy
     networks:
       - app-network
-    command: ["./wait-for.sh", "postgres:5432", "--", "python", "src/main.py"]
 
   node-app:
     build:
