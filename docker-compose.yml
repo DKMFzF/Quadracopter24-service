@@ -19,11 +19,11 @@ services:
       retries: 5
 
   ml:
-    build: ./ml
+    build: ./fkv-service-ml
     ports:
       - "8001:8001"
     volumes:
-      - ./ml:/app
+      - ./fkv-service-ml:/app
     environment:
       - PYTHONUNBUFFERED=1
     restart: unless-stopped
@@ -36,11 +36,11 @@ services:
       retries: 5
 
   python-app:
-    build: ./backend
+    build: ./fkv-service
     ports:
       - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ./fkv-service:/app
     environment:
       - PYTHONUNBUFFERED=1
       - DBHOST=postgres
@@ -60,12 +60,12 @@ services:
 
   node-app:
     build:
-      context: ./frontend
+      context: ./fkv-client
       dockerfile: Dockerfile
     ports:
       - "8081:8081"
     volumes:
-      - ./frontend:/app
+      - ./fkv-client:/app
     environment:
       - NODE_ENV=development
     restart: unless-stopped
