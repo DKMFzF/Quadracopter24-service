@@ -38,6 +38,20 @@ services:
     networks:
       - app-network
 
+  ml-app:
+    build:
+      context: ./fkv-service-ml
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./fkv-service-ml:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    networks:
+      - app-network
+
   node-app:
     build:
       context: ./fkv-client
