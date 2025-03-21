@@ -29,6 +29,11 @@ services:
     restart: unless-stopped
     networks:
       - app-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   python-app:
     build: ./backend
@@ -43,10 +48,13 @@ services:
       - DBUSER=postgres
       - DBPASS=12345678
       - DBNAME=fkvdb
+      - ML_SERVICE_URL=http://ml:8001
     restart: unless-stopped
     depends_on:
-      - postgres
-      - ml
+      postgres:
+        condition: service_healthy
+      ml:
+        condition: service_healthy
     networks:
       - app-network
 
