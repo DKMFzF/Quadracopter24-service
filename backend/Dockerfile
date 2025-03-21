@@ -1,4 +1,3 @@
-# Этап сборки
 FROM python:3.10-buster as builder
 
 WORKDIR /app
@@ -25,5 +24,9 @@ COPY --from=builder /usr/local/lib/python3.10/site-packages /usr/local/lib/pytho
 COPY --from=builder /app /app
 
 EXPOSE 8000
+
+COPY db-check.sh /db-check.sh
+RUN chmod +x /db-check.sh
+RUN apt-get update && apt-get install -y netcat bash
 
 CMD ["python", "src/main.py"]
