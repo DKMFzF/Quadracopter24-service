@@ -27,7 +27,7 @@ services:
     environment:
       - PYTHONUNBUFFERED=1
       - DBHOST=postgres
-      - DBPORT=5432  # Порт внутри контейнера
+      - DBPORT=5432
       - DBUSER=postgres
       - DBPASS=12345678
       - DBNAME=fkvdb
