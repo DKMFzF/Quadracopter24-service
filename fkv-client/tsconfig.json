@@ -11,6 +11,7 @@
 		"jsx": "react-jsx" /* Specify JSX code generation: 'preserve', 'react-native', 'react' or 'react-jsx'. */,
 		"isolatedModules": true /* Transpile each file as a separate module (similar to 'ts.transpileModule'). */,
 		"esModuleInterop": true /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */,
+		"allowSyntheticDefaultImports": true,
 		"strict": true /* Enable all strict type-checking options. */,
 		"skipLibCheck": true /* Skip type checking of declaration files. */,
 		"forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */,
@@ -24,7 +25,16 @@
 		"paths": {
 			"src/*": ["src/*"],
 			"fonts/*": ["src/fonts/*"],
-			"components/*": ["src/components/*"]
+			"components/*": ["src/components/*"],
+			
+			"@pages": ["src/pages"],
+      "@components": ["src/components"],
+      "@ui/*": ["src/ui/*"],
+      "@ui-pages": ["src/components/ui/pages"],
+      "@utils-types": ["src/utils/types"],
+      "@api": ["src/utils/flv-test-api.ts"],
+      "@slices": ["src/services/slices"],
+      "@selectors": ["src/services/selectors"]
 		}
 	},
 	"outDir": "./dist/",

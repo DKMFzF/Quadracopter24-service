@@ -79,10 +79,16 @@
 		]
 	},
 	"dependencies": {
-		"express": "^4.21.2",
+		"@reduxjs/toolkit": "^2.7.0",
+		"@zlden/react-developer-burger-ui-components": "^1.15.0",
 		"clsx": "^2.1.0",
+		"core-js": "^3.41.0",
+		"express": "^4.21.2",
 		"react": "^18.2.0",
-		"react-dom": "^18.2.0"
+		"react-dom": "^18.2.0",
+		"react-redux": "^9.2.0",
+		"react-router-dom": "^7.5.0",
+		"redux": "^5.0.1"
 	},
 	"lint-staged": {
 		"*.{css,scss}": "npm run stylelint:fix",
