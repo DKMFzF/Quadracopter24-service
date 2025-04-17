@@ -81,6 +81,7 @@
 	"dependencies": {
 		"@reduxjs/toolkit": "^2.7.0",
 		"@zlden/react-developer-burger-ui-components": "^1.15.0",
+		"axios": "^1.8.4",
 		"clsx": "^2.1.0",
 		"core-js": "^3.41.0",
 		"express": "^4.21.2",

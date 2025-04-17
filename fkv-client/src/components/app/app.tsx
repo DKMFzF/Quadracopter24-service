@@ -3,8 +3,9 @@ import styles from './app.module.scss';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AppHeader } from '../app-header';
 import { HeroPage, NotFound404, Profile } from '../../pages';
-import { ProtectedRoute } from '../protected-route/protected-route';
+import ProtectedRoute from '../protected-route/protected-route';
 import { Modal } from '../modal';
+// import { useDispatch } from 'src/services/store';
 
 export const App = () => {
 	const location = useLocation();

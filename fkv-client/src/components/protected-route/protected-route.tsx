@@ -1,26 +1,18 @@
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { useSelector } from '../../services/store';
-// import { selectUserState } from '../../services/slices/user-Info-slice/user-info';
-import type ProtectedRouteProps from './type';
+import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../services/store';
 
-/**
- * Компонент для защиты путей в приложении
- */
-export const ProtectedRoute = ({
-  children,
-  onlyAuthorized
-}: ProtectedRouteProps) => {
-  const location = useLocation();
-
-  // const { isAuthenticated } = useSelector(selectUserState);
-
-  // if (!onlyAuthorized && !isAuthenticated)
-  //   return <Navigate replace to='/login' state={{ from: location }} />;
-
-  // if (onlyAuthorized && isAuthenticated) {
-  //   const from = location.state?.from || { pathname: '/' };
-  //   return <Navigate replace to={from} />;
-  // }
-
-  return children ? children : <Outlet />;
+type ProtectedRouteProps = {
+  children: React.ReactNode;
 };
+
+const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
+  const token = useSelector((state: RootState) => state.auth.token);
+
+  if (!token) return <Navigate to="/login" replace />;
+
+  return <>{children}</>;
+};
+
+export default ProtectedRoute;

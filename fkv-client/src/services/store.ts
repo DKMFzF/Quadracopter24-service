@@ -4,9 +4,12 @@ import {
   useDispatch as dispatchHook,
   useSelector as selectorHook
 } from 'react-redux';
+import authReducer from './slices/user-api';
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+  auth: authReducer,
+});
 
 export const store = configureStore({
   reducer: rootReducer,
