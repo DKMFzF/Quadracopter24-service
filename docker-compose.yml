@@ -40,28 +40,26 @@ services:
     networks:
       - app-network
 
-#  ml-app:
-#    build:
-#      context: ./fkv-service-ml
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8001:8001"
-#    volumes:
-#      - ./fkv-service-ml:/app
-#    environment:
-#      - PYTHONUNBUFFERED=1
-#    restart: unless-stopped
-#    networks:
-#      - app-network
-
-  # notification-service:
-  #   build: ./notification-service
-  #   environment:
-  #     KAFKA_BROKERS: kafka:9092
-  #   depends_on:
-  #     - kafka
-  #   networks:
-  #     - app-network
+  ml-app:
+    build:
+      context: ./fkv-service-ml
+      dockerfile: Dockerfile
+    ports:
+      - "85:85"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    networks:
+      - app-network
+#
+#   notification-service:
+#     build: ./notification-service
+#     environment:
+#       KAFKA_BROKERS: kafka:9092
+#     depends_on:
+#       - kafka
+#     networks:
+#       - app-network
 
   node-app:
     build:
