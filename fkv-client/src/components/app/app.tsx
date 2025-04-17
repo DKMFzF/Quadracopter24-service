@@ -2,7 +2,9 @@ import clsx from 'clsx';
 import styles from './app.module.scss';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AppHeader } from '../app-header';
-import { HeroPage } from '../../pages';
+import { HeroPage, NotFound404, Profile } from '../../pages';
+import { ProtectedRoute } from '../protected-route/protected-route';
+import { Modal } from '../modal';
 
 export const App = () => {
 	const location = useLocation();
@@ -21,7 +23,41 @@ export const App = () => {
 
 			<Routes location={backgroundLocation || location}>
 				<Route path='/' element={<HeroPage />} />
+
+				<Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+				<Route
+          path='/profile'
+          element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          }
+        />
+
+				<Route path='*' element={<NotFound404 />} />
 			</Routes>
+
+			{/* Модальные окна для отображения поверх основного контента */}
+      {backgroundLocation && (
+        <Routes>
+          <Route
+            path='/ingredients/:id'
+            element={
+              <Modal title='Детали ингредиента' onClose={closeModal}>
+                {/* <IngredientDetails /> */}
+              </Modal>
+            }
+          />
+        </Routes>
+      )}
 		</div>
 	);
 };

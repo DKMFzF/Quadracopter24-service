@@ -1,85 +1,58 @@
 import { FC } from 'react';
-
-import { Button, Input } from '@zlden/react-developer-burger-ui-components';
 import styles from './profile.module.scss';
 import commonStyles from '../common.module.scss';
 
-import { ProfileUIProps } from './type';
-// import { ProfileMenu } from '@components';
+type ProfileUIProps = {
+  name: string;
+  email: string;
+  avatar?: string;
+};
 
-export const ProfileUI: FC<ProfileUIProps> = ({
-  formValue,
-  isFormChanged,
-  updateUserError,
-  handleSubmit,
-  handleCancel,
-  handleInputChange
-}) => (
-  <main className={`${commonStyles.container}`}>
-    <form
-      className={`mt-30 ${styles.form} ${commonStyles.form}`}
-      onSubmit={handleSubmit}
-    >
-      <>
-        <div className='pb-6'>
-          <Input
-            type={'text'}
-            placeholder={'Имя'}
-            onChange={handleInputChange}
-            value={formValue.name}
-            name={'name'}
-            error={false}
-            errorText={''}
-            size={'default'}
-            icon={'EditIcon'} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
-        </div>
-        <div className='pb-6'>
-          <Input
-            type={'email'}
-            placeholder={'E-mail'}
-            onChange={handleInputChange}
-            value={formValue.email}
-            name={'email'}
-            error={false}
-            errorText={''}
-            size={'default'}
-            icon={'EditIcon'} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
-        </div>
-        <div className='pb-6'>
-          <Input
-            type={'password'}
-            placeholder={'Пароль'}
-            onChange={handleInputChange}
-            value={formValue.password}
-            name={'password'}
-            error={false}
-            errorText={''}
-            size={'default'}
-            icon={'EditIcon'} onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}          />
-        </div>
-        {isFormChanged && (
-          <div className={styles.button}>
-            <Button
-              type='secondary'
-              htmlType='button'
-              size='medium'
-              onClick={handleCancel}
-            >
-              Отменить
-            </Button>
-            <Button type='primary' size='medium' htmlType='submit'>
-              Сохранить
-            </Button>
+export const ProfileUI: FC<ProfileUIProps> = ({ name, email, avatar }) => (
+  <main className={`${commonStyles.container} ${styles.fadeIn}`}>
+    <div className={`mt-30 ${styles.profile}`}>
+      <div className={styles.profileSection}>
+        {avatar && (
+          <div className={styles.avatarContainer}>
+            <img 
+              src={avatar} 
+              alt="Profile" 
+              className={styles.avatar}
+              onError={(e) => {
+                (e.target as HTMLImageElement).src = 'default-avatar.png';
+              }}
+            />
           </div>
         )}
-        {updateUserError && (
-          <p
-            className={`${commonStyles.error} pt-5 text text_type_main-default`}
-          >
-            {updateUserError}
+        
+        <h2 className="text text_type_main-large mb-6 text-center" style={{ color: '#2d3748' }}>
+          Профиль пользователя
+        </h2>
+        
+        <div className={`${styles.field} mb-6`}>
+          <span className="text text_type_main-default" style={{ color: '#718096', minWidth: '80px' }}>
+            Имя:
+          </span>
+          <span className="text text_type_main-default ml-4" style={{ color: '#1a202c', fontWeight: 500 }}>
+            {name}
+          </span>
+        </div>
+        
+        <div className={`${styles.field} mb-6`}>
+          <span className="text text_type_main-default" style={{ color: '#718096', minWidth: '80px' }}>
+            Email:
+          </span>
+          <span className="text text_type_main-default ml-4" style={{ color: '#1a202c', fontWeight: 500 }}>
+            {email}
+          </span>
+        </div>
+        
+        <div className={styles.note}>
+          <p className="text text_type_main-default" style={{ color: '#718096' }}>
+            Для изменения данных обратитесь к администратору
           </p>
-        )}
-      </>
-    </form>
+        </div>
+      </div>
+    </div>
   </main>
 );
