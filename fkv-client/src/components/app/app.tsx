@@ -5,43 +5,34 @@ import { AppHeader } from '../app-header';
 import { HeroPage, Login, NotFound404, Profile, Register } from '../../pages';
 import ProtectedRoute from '../protected-route/protected-route';
 import { Modal } from '../modal';
-// import { useDispatch } from 'src/services/store';
+import { OrdersHistory, ProfileInfo } from '../../pages/profile/profile';
 
 export const App = () => {
-	const location = useLocation();
+  const location = useLocation();
   const navigate = useNavigate();
-  // const dispatch = useDispatch();
+  const backgroundLocation = location.state?.background;
 
-	const backgroundLocation = location.state?.background;
-
-	const closeModal = () => {
+  const closeModal = () => {
     navigate(-1);
   };
 
-	return (
-		<div className={clsx(styles.app)}>
-			<AppHeader />
+  return (
+    <div className={clsx(styles.app)}>
+      <AppHeader />
 
-			<Routes location={backgroundLocation || location}>
-				<Route path='/' element={<HeroPage />} />
+      <Routes location={backgroundLocation || location}>
+        <Route path='/' element={<HeroPage />} />
 
-				<Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path='/profile' element={<ProtectedRoute><Profile /></ProtectedRoute>}>
+          <Route index element={<ProfileInfo />} />
+          <Route path='orders' element={<OrdersHistory />} />
+        </Route>
 
         <Route path='/login' element={<Login />} />
-
         <Route path='/register' element={<Register />} />
+        <Route path='*' element={<NotFound404 />} />
+      </Routes>
 
-				<Route path='*' element={<NotFound404 />} />
-			</Routes>
-
-			{/* Модальные окна для отображения поверх основного контента */}
       {backgroundLocation && (
         <Routes>
           <Route
@@ -54,8 +45,6 @@ export const App = () => {
           />
         </Routes>
       )}
-		</div>
-	);
+    </div>
+  );
 };
-
-export default App;
