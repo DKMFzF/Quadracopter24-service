@@ -2,10 +2,16 @@
 
 ## Для запуска  
 
+Прописываем по этапно, а то всё сломается
 ```bash
 git clone https://github.com/DKMFzF/fkv_test.git
 
-# Для автоматизации запуска
+# для билда фронтенда
 chmod +x start-app.sh
 ./start-app.sh
+
+# поднимаем проект
+docker-compose up --build
+
+# дальше бога нет
 ```

@@ -8,6 +8,7 @@ from src.config import settings
 engine = create_async_engine(settings.DB_URL)
 async_session_maker = async_sessionmaker(bind=engine, expire_on_commit=False)
 
+
 async def check_connection():
     async with async_session_maker() as session:
         try:
@@ -16,7 +17,12 @@ async def check_connection():
         except Exception as e:
             print("Ошибка подключения:", e)
 
-asyncio.run(check_connection())
+asyncio.create_task(check_connection())
 
 class Base(DeclarativeBase):
     pass
+
+async def create_tables():
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+

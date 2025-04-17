@@ -10,5 +10,5 @@ npm run build
 
 cd ..
 
-echo "[LOG]: Запускаем docker-compose"
+echo "Запускаем docker-compose..."
 docker-compose up --build

@@ -3,17 +3,17 @@ services:
     image: postgres:13
     restart: always
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: 12345678
-      POSTGRES_DB: fkvdb
+      POSTGRES_USER: ${DBUSER}
+      POSTGRES_PASSWORD: ${DBPASS}
+      POSTGRES_DB: ${DBNAME}
     ports:
-      - "5433:5432"
+      - "${DBPORT}:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     networks:
       - app-network
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres -d fkvdb"]
+      test: ["CMD-SHELL", "pg_isready -U ${DBUSER}"]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -21,16 +21,15 @@ services:
   python-app:
     build: ./fkv-service
     ports:
-      - "8000:8000"
-    volumes:
-      - ./fkv-service:/app
+      - "80:80"
+    env_file: .env
     environment:
       - PYTHONUNBUFFERED=1
+      - DBNAME=${DBNAME}
+      - DBPORT=${DBPORT}
+      - DBUSER=${DBUSER}
+      - DBPASS=${DBPASS}
       - DBHOST=postgres
-      - DBPORT=5432
-      - DBUSER=postgres
-      - DBPASS=12345678
-      - DBNAME=fkvdb
     restart: unless-stopped
     depends_on:
       postgres:
@@ -38,19 +37,19 @@ services:
     networks:
       - app-network
 
-  ml-app:
-    build:
-      context: ./fkv-service-ml
-      dockerfile: Dockerfile
-    ports:
-      - "8001:8001"
-    volumes:
-      - ./fkv-service-ml:/app
-    environment:
-      - PYTHONUNBUFFERED=1
-    restart: unless-stopped
-    networks:
-      - app-network
+#  ml-app:
+#    build:
+#      context: ./fkv-service-ml
+#      dockerfile: Dockerfile
+#    ports:
+#      - "8001:8001"
+#    volumes:
+#      - ./fkv-service-ml:/app
+#    environment:
+#      - PYTHONUNBUFFERED=1
+#    restart: unless-stopped
+#    networks:
+#      - app-network
 
   node-app:
     build:
@@ -71,4 +70,4 @@ networks:
     driver: bridge
 
 volumes:
-  pgdata:
+  postgres_data:
