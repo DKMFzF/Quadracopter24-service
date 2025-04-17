@@ -1,5 +1,5 @@
 import { FC, SyntheticEvent, useState } from 'react';
-import { RegisterUI } from '@ui-pages';
+import { RegisterUI } from '../../components/ui';
 // import { getRegisterUser } from '../../services/slices/user-Info-slice/user-info';
 // import { useDispatch } from '../../services/store';
 // import { TRegisterData } from '@api';

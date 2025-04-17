@@ -1,0 +1,79 @@
+// cart-quadcopter.module.scss
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+
+.card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  border-radius: 2.5rem;
+  background-color: #EFEEF4;
+  height: 100%;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-5px);
+  }
+
+  &__content {
+    flex: 1;
+  }
+
+  &__title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2rem, 5vw, 127px);
+    line-height: 1.1;
+    margin: 0 0 1rem;
+    color: #000;
+  }
+
+  &__body {
+    font-family: 'Gilroy', sans-serif;
+    font-size: clamp(1rem, 2vw, 8.25rem);
+    color: rgba(49, 49, 49, 0.6);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  &__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    font-family: 'Gilroy', sans-serif;
+    text-decoration: none;
+    padding: 1rem 1.5rem;
+    font-size: 1.9rem;
+    border-radius: 0.75rem;
+    color: white;
+    background-color: #007AFF;
+    transition: background-color 0.3s ease;
+    width: fit-content;
+    
+    &:hover {
+      background-color: #0066CC;
+    }
+  }
+
+  &__linkArrow {
+    transition: transform 0.3s ease;
+  }
+
+  &__link:hover &__linkArrow {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 1.5rem;
+    border-radius: 2rem;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 1.25rem;
+    border-radius: 1.5rem;
+    gap: 1rem;
+  }
+}

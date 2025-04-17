@@ -1,7 +1,8 @@
 import clsx from 'clsx';
 import styles from './app.module.scss';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AppHeader } from '../app-header';
+import { HeroPage } from '../../pages';
 
 export const App = () => {
 	const location = useLocation();
@@ -17,6 +18,10 @@ export const App = () => {
 	return (
 		<div className={clsx(styles.app)}>
 			<AppHeader />
+
+			<Routes location={backgroundLocation || location}>
+				<Route path='/' element={<HeroPage />} />
+			</Routes>
 		</div>
 	);
 };
