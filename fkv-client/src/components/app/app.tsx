@@ -2,7 +2,7 @@ import clsx from 'clsx';
 import styles from './app.module.scss';
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { AppHeader } from '../app-header';
-import { HeroPage, NotFound404, Profile } from '../../pages';
+import { HeroPage, Login, NotFound404, Profile, Register } from '../../pages';
 import ProtectedRoute from '../protected-route/protected-route';
 import { Modal } from '../modal';
 // import { useDispatch } from 'src/services/store';
@@ -34,14 +34,9 @@ export const App = () => {
           }
         />
 
-				<Route
-          path='/profile'
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        />
+        <Route path='/login' element={<Login />} />
+
+        <Route path='/register' element={<Register />} />
 
 				<Route path='*' element={<NotFound404 />} />
 			</Routes>

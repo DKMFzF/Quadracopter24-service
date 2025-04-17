@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, } from 'react';
 import {
   Input,
   Button,
@@ -16,7 +16,11 @@ export const RegisterUI: FC<RegisterUIProps> = ({
   password,
   setPassword,
   userName,
-  setUserName
+  setUserName,
+  setSecondName,
+  secondName,
+  userNumber,
+  setUserNumber,
 }) => (
   <main className={styles.container}>
     <div className={`pt-6 ${styles.wrapCenter}`}>
@@ -34,6 +38,28 @@ export const RegisterUI: FC<RegisterUIProps> = ({
               onChange={(e) => setUserName(e.target.value)}
               value={userName}
               name='name'
+              error={false}
+              errorText=''
+              size='default' onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            />
+          </div>
+          <div className='pb-6'>
+            <Input
+              type='text'
+              placeholder='Фамилия'
+              onChange={(e) => setSecondName(e.target.value)}
+              value={secondName}
+              name='second_name'
+              error={false}
+              errorText=''
+              size='default' onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            />
+          </div>
+          <div className='pb-6'>
+            <Input
+              type='text'
+              placeholder='Номер телефона'
+              onChange={(e) => setUserNumber(e.target.value)}
+              value={userNumber}
+              name='phone'
               error={false}
               errorText=''
               size='default' onPointerEnterCapture={undefined} onPointerLeaveCapture={undefined}            />

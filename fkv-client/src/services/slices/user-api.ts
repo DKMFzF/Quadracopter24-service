@@ -1,10 +1,10 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 
-const API_BASE_URL = 'http://localhost/';
+const API_BASE_URL = 'http://localhost';
 
 type AuthResponse = string;
-type UserData = {
+export type UserData = {
   email: string;
   phone?: string;
   first_name: string;
