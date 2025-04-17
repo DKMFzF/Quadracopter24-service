@@ -1,0 +1,170 @@
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+.header {
+  position: fixed;
+  top: 10px;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0 10px;
+  }
+}
+
+.img_line_logo {
+  height: 40px;
+}
+
+.header__main_logo {
+  padding-inline-start: 10px;
+  font-family: 'Bebas Neue';
+  font-size: 53px;
+  color: #007AFF;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1240px;
+  height: 56px;
+  margin: 0 auto;
+  padding: 0 20px;
+
+  @media (max-width: $breakpoint-tablet) {
+    height: 48px;
+    padding: 0 15px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    height: 44px;
+    padding: 0 10px;
+  }
+}
+
+.menu_part_left,
+.menu_part_right {
+  display: flex;
+  align-items: center;
+  flex: 1;
+
+  @media (max-width: $breakpoint-tablet) {
+    flex: none;
+    width: auto;
+  }
+}
+
+.menu_part_right {
+  justify-content: flex-end;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-inactive-color);
+  padding: 8px 16px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-primary-color);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  @media (max-width: $breakpoint-tablet) {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: 6px 10px;
+    font-size: 13px;
+  }
+}
+
+.link_active {
+  color: var(--text-primary-color);
+  font-weight: 500;
+
+  &:hover {
+    background-color: transparent;
+  }
+}
+
+.icon-wrapper {
+  margin-right: 8px;
+
+  @media (max-width: $breakpoint-mobile) {
+    margin-right: 6px;
+  }
+}
+
+.text {
+  @media (max-width: $breakpoint-tablet) {
+    font-size: 14px !important;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 12px !important;
+  }
+}
+
+// Добавьте эти стили в ваш SCSS-файл
+
+.profile_section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 16px;
+  border-radius: 40px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  color: var(--text-inactive-color);
+
+  &:hover {
+    color: var(--text-primary-color);
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+
+  &__icon {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    
+    @media (max-width: $breakpoint-mobile) {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__label {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    color: #007AFF;
+    letter-spacing: 1px;
+    white-space: nowrap;
+
+    @media (max-width: $breakpoint-tablet) {
+      font-size: 20px;
+    }
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 18px;
+    }
+  }
+
+  // Активное состояние
+  &.active {
+    color: var(--text-primary-color);
+    font-weight: 500;
+    
+    .profile-section__label {
+      color: #0055CC;
+    }
+  }
+}

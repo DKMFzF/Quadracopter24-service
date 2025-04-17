@@ -1,0 +1,32 @@
+// Определите переменные брейкпоинтов в начале файла
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+
+.imgContainer {
+  border-radius: 2.5rem;
+  overflow: hidden;
+  height: 100%;
+  position: relative;
+  background: #f0f0f0;
+  
+  @media (max-width: $breakpoint-tablet) {
+    min-height: 300px;
+    order: -1;
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    border-radius: 1.5rem;
+  }
+}
+
+.imgCard {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  
+  &:hover {
+    transform: scale(1.02);
+  }
+}
