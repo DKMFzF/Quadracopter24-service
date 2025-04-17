@@ -30,6 +30,9 @@ services:
       - DBUSER=${DBUSER}
       - DBPASS=${DBPASS}
       - DBHOST=postgres
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - JWT_ALGORITHM=${JWT_ALGORITHM}
+      - ACCESS_TOKEN_EXPIRE_MINUTES=${ACCESS_TOKEN_EXPIRE_MINUTES}
     restart: unless-stopped
     depends_on:
       postgres:

@@ -13,34 +13,7 @@ flats = [
     {"id": 2, "Тип": "Однокомнатная"}
 ]
 
-import httpx
 
-async def get_prediction_from_ml():
-    async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8001/predict")
-        return response.json()
-
-@router.get("/predict")
-async def get_prediction():
-    return await get_prediction_from_ml()
-
-@router.get("", summary="Получение всех квартир")
-async def get_all_flats():
-    async with async_session_maker() as session:
-        query = select(FlatsModel)
-        res = await session.execute(query)
-        hotels = res.scalars().all()
-        return hotels
-
-
-@router.post("", summary="Добавление квартиры")
-async def add_flat(flat_data: FlatAdd = Body()):
-    price = 5000
-    async with async_session_maker() as session:
-        add_flat_stmt = insert(FlatsModel).values(price=price, **flat_data.model_dump())
-        await session.execute(add_flat_stmt)
-        await session.commit()
-    return {"status": "OK"}
 
 
 @router.post("/predict", summary="Предсказание стоимости квартиры")
