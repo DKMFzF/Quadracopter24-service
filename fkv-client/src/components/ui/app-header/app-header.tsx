@@ -1,16 +1,17 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import styles from './app-header.module.scss';
 import { TAppHeaderUIProps } from './type';
 import {
-  BurgerIcon,
-  ListIcon,
-  Logo,
   ProfileIcon
 } from '@zlden/react-developer-burger-ui-components';
 import { Link, useLocation } from 'react-router-dom';
+import logoImage from '../../../image/logo_line.svg';
 
 /**
- * Компонент отрисовки шапки приложения
+ * Упрощенный компонент шапки приложения
+ * Содержит только две ссылки по краям:
+ * - Слева: Оформление заказа
+ * - Справа: Личный кабинет
  */
 export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
   const location = useLocation();
@@ -28,43 +29,29 @@ export const AppHeaderUI: FC<TAppHeaderUIProps> = ({ userName }) => {
               isActiveLink('/', true) ? styles.link_active : ''
             }`}
           >
-            <BurgerIcon
-              type={isActiveLink('/', true) ? 'primary' : 'secondary'}
-            />
-            <p className='text text_type_main-default ml-2 mr-10'>
-              Конструктор
+            <img src={logoImage} className={styles.img_line_logo} alt="лого-лайн" />
+            <p className={styles.header__main_logo}>
+              КВАДРАКОПТЕР24
             </p>
           </Link>
+        </div>
+
+        <div className={styles.menu_part_right}>
           <Link
-            to='/feed'
-            className={`${styles.link} ${
-              isActiveLink('/feed') ? styles.link_active : ''
+            to='/profile'
+            className={`${styles.profile_section} ${
+              isActiveLink('/profile') ? styles.active : ''
             }`}
           >
-            <ListIcon type={isActiveLink('/feed') ? 'primary' : 'secondary'} />
-            <p className='text text_type_main-default ml-2'>Лента заказов</p>
+            <ProfileIcon
+              type={isActiveLink('/profile') ? 'primary' : 'secondary'}
+              className={styles.profile_section__icon}
+            />
+            <span className={styles.profile_section__label}>
+              {userName || 'ЛИЧНЫЙ КАБИНЕТ'}
+            </span>
           </Link>
         </div>
-
-        <div className={styles.logo}>
-          <Link to='/'>
-            <Logo className='' />
-          </Link>
-        </div>
-
-        <Link
-          to='/profile'
-          className={`${styles.link} ${styles.link_position_last} ${
-            isActiveLink('/profile') ? styles.link_active : ''
-          }`}
-        >
-          <ProfileIcon
-            type={isActiveLink('/profile') ? 'primary' : 'secondary'}
-          />
-          <p className='text text_type_main-default ml-2'>
-            {userName || 'Личный кабинет'}
-          </p>
-        </Link>
       </nav>
     </header>
   );
