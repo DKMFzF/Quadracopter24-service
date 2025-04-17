@@ -1,17 +1,18 @@
 from contextlib import asynccontextmanager
+import sys
+from pathlib import Path
 
 import uvicorn
 from fastapi import FastAPI
 
+sys.path.append(str(Path(__file__).parent.parent))
 
-import sys
-from pathlib import Path
 
 from fastapi.middleware.cors import CORSMiddleware
 
 from src.database import create_tables
 
-sys.path.append(str(Path(__file__).parent.parent))
+
 
 from src.api.flats import router as router_flats
 from src.api.auth import router as router_users
@@ -36,6 +37,6 @@ app.add_middleware(
 app.include_router(router_flats)
 app.include_router(router_users)
 
-# if __name__ == "__main__":
-#     uvicorn.run("main:app", reload=True, host="0.0.0.0", port=8000)
-#     # uvicorn.run("main:app", reload=True)
+if __name__ == "__main__":
+    # uvicorn.run("main:app", reload=True, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", reload=True)
