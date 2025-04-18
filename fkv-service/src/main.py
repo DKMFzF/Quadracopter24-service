@@ -16,6 +16,7 @@ from src.database import create_tables
 
 from src.api.flats import router as router_flats
 from src.api.auth import router as router_users
+from src.api.ordering import router as router_ordering
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -36,6 +37,7 @@ app.add_middleware(
 
 app.include_router(router_flats)
 app.include_router(router_users)
+app.include_router(router_ordering)
 
 if __name__ == "__main__":
     # uvicorn.run("main:app", reload=True, host="0.0.0.0", port=8000)
