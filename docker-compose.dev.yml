@@ -52,6 +52,15 @@ services:
     networks:
       - app-network
 
+  notification-service:
+    build: ./notification-service
+    environment:
+      KAFKA_BROKERS: kafka:9092
+    depends_on:
+      - kafka
+    networks:
+      - app-network
+
   node-app:
     build:
       context: ./fkv-client
