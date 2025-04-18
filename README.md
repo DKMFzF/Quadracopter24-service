@@ -34,7 +34,7 @@ chmod +x start-app.sh
 
 ## Tech Stack
 
-- **Frontend и локальный frontend Backend (fkv-service-client)**
+- **Frontend и локальный backend (fkv-service-client)**
   - React
   - Redux
   - Axios
