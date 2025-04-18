@@ -1,4 +1,3 @@
-// profile-ui.tsx
 import { FC } from 'react';
 import styles from './profile.module.scss';
 

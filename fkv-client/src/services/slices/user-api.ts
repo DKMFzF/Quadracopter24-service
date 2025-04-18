@@ -3,6 +3,22 @@ import axios, { AxiosError } from 'axios';
 
 const API_BASE_URL = 'http://localhost';
 
+// Добавим тип для профиля пользователя
+export type UserProfile = {
+  email: string;
+  phone?: string;
+  first_name: string;
+  second_name: string;
+};
+
+// Обновим AuthState
+interface AuthState {
+  user: UserProfile | null;  // Будет хранить полный профиль
+  token: string | null;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  error: ValidationError | string | null;
+}
+
 type AuthResponse = string;
 export type UserData = {
   email: string;
@@ -24,11 +40,12 @@ type ValidationError = {
 };
 
 interface AuthState {
-  user: string | null;
+  user: UserProfile | null;
   token: string | null;
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: ValidationError | string | null;
 }
+
 
 const initialState: AuthState = {
   user: null,
@@ -78,21 +95,23 @@ export const loginUser = createAsyncThunk<
 );
 
 export const getCurrentUser = createAsyncThunk<
-  string,
+  UserProfile,
   void,
   { rejectValue: ValidationError }
 >(
   'auth/me',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get<string>(`${API_BASE_URL}/auth/me`);
+      const response = await axios.get<UserProfile>(`${API_BASE_URL}/auth/me`);
       return response.data;
     } catch (err) {
       const error = err as AxiosError<ValidationError>;
       if (error.response) {
         return rejectWithValue(error.response.data);
       }
-      return rejectWithValue({ detail: [{ loc: [], msg: 'An unknown error occurred', type: 'unknown' }] });
+      return rejectWithValue({ 
+        detail: [{ loc: [], msg: 'Неизвестная ошибка', type: 'unknown' }] 
+      });
     }
   }
 );

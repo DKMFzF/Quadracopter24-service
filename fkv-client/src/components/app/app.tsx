@@ -6,6 +6,7 @@ import { HeroPage, Login, NotFound404, Profile, Register } from '../../pages';
 import ProtectedRoute from '../protected-route/protected-route';
 import { Modal } from '../modal';
 import { OrdersHistory, ProfileInfo } from '../../pages/profile/profile';
+import { FormInput } from '../ui/form-input-prompt';
 
 export const App = () => {
   const location = useLocation();
@@ -36,10 +37,10 @@ export const App = () => {
       {backgroundLocation && (
         <Routes>
           <Route
-            path='/ingredients/:id'
+            path='/modal'
             element={
-              <Modal title='Детали ингредиента' onClose={closeModal}>
-                {/* <IngredientDetails /> */}
+              <Modal title='Введите ваш запрос максимально подробно' onClose={closeModal}>
+                <FormInput></FormInput>
               </Modal>
             }
           />

@@ -33,10 +33,20 @@ export const Profile: FC = () => {
 export const ProfileInfo: FC = () => {
   const { user } = useSelector(state => state.auth);
 
+  const isLoading = useSelector(state => state.auth.status === 'loading');
+
+  if (isLoading) {
+    return <div>Загрузка профиля...</div>;
+  }
+
+  if (!user) {
+    return <div>Профиль не загружен</div>;
+  }
+
   return (
     <ProfileUI 
-      name={user || 'Пользователь'} 
-      email={user || ''}
+      name={`${user.first_name} ${user.second_name}`.trim() || 'Пользователь'}
+      email={user.email}
     />
   );
 };

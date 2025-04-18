@@ -3,6 +3,7 @@ type CardQuadcopter = {
   bodyText: string;
   buttonText: string;
   anchorLink: string;
+  modalData: any;
 };
 
 export default CardQuadcopter;

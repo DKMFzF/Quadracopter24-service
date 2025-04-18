@@ -1,4 +1,3 @@
-// profile-menu.tsx
 import { FC } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import styles from './profile-menu.module.scss';
